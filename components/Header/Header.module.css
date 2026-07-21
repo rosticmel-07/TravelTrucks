@@ -1,0 +1,26 @@
+.content {
+  display: flex;
+  padding: 28px 0;
+}
+
+.headerLogo {
+  margin-right: 450px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.navLink {
+  color: var(--main);
+  font-weight: 500;
+  transition: var(--main-transition);
+}
+
+.navLink:hover,
+.navLink:focus,
+.navLink:active {
+  color: var(--grey-green);
+}
