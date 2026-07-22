@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import css from './page.module.css';
+// import Image from 'next/image';
+// import css from './page.module.css';
 import Hero from '@/components/Hero/Hero';
 
 export default function Home() {

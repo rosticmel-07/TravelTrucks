@@ -15,7 +15,7 @@
   --olive: #f0f1f1;
   --green-hover: #6d7b75;
 
-  --main-transition: 333ms ease-in-out;
+  --main-transition: 300ms ease-in-out;
 
   --font-family: 'Inter', sans-serif;
   --second-family: 'Manrope', sans-serif;
@@ -63,8 +63,8 @@ button {
 
 img {
   display: block;
-  max-width: 100%;
   height: auto;
+  max-width: 100%;
 }
 
 .container {

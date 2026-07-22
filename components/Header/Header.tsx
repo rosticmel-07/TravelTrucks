@@ -33,7 +33,7 @@ export default function Header() {
             </li>
             <li className={css.navItem}>
               <Link
-                href="/catalog"
+                href="/campers"
                 className={css.navLink}
                 aria-label="Перейти до каталогу"
               >
