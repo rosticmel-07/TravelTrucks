@@ -1,6 +1,10 @@
+'use client';
+
 import { fetchFilter } from '@/lib/api';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
+import formatLabel from '../_utils/formatLabel';
+import css from './Filters.module.css';
 
 type CampersFilters = {
   location: string;
@@ -23,13 +27,14 @@ export default function Filters() {
   });
 
   return (
-    <section>
-      <div>
-        <form action="">
-          <div>
-            <p>Location</p>
+    <section className={css.wrapper}>
+      <div className={css.card}>
+        <form className={css.form}>
+          <div className={css.locationField}>
+            <p className={css.locationLabel}>Location</p>
             <input
               type="text"
+              className={css.locationInput}
               value={filterCampers.location}
               onChange={(event) =>
                 setFilterCampers({
@@ -37,85 +42,100 @@ export default function Filters() {
                   location: event.target.value,
                 })
               }
-              name="Location"
+              name="location"
             />
           </div>
 
-          <div>
-            <p>Filters</p>
-            <div>
-              <div>
-                <p>Camper Form</p>
-                <label htmlFor="">
-                  <input
-                    type="radio"
-                    value={'alcove'}
-                    name="camperForm"
-                    checked={data.forms === 'alcove'}
-                  ></input>
-                  Alcove
-                </label>
-                <label htmlFor="">
-                  <input
-                    type="radio"
-                    value={'panel_van'}
-                    name="camperForm"
-                    checked={filterCampers.form === 'panel_van'}
-                  ></input>
-                  Panel Van
-                </label>
-                <label htmlFor="">
-                  <input
-                    type="radio"
-                    value={'integrated'}
-                    name="camperForm"
-                    checked={filterCampers.form === 'integrated'}
-                  ></input>
-                  Integrated
-                </label>
-                <label htmlFor="">
-                  <input
-                    type="radio"
-                    value={'semi_integrated'}
-                    name="camperForm"
-                    checked={filterCampers.form === 'semi_integrated'}
-                  ></input>
-                  Semi Integrated
-                </label>
-              </div>
-              <div>
-                <p>Engine</p>
-                <label htmlFor="">
-                  <input type="radio" value={'diesel'} name="Engine"></input>
-                  Diesel
-                </label>
-                <label htmlFor="">
-                  <input type="radio" value={'petrol'} name="Engine"></input>
-                  Petrol
-                </label>
-                <label htmlFor="">
-                  <input type="radio" value={'hybrid'} name="Engine"></input>
-                  Hybrid
-                </label>
-                <label htmlFor="">
-                  <input type="radio" value={'electric'} name="Engine"></input>
-                  Electric
-                </label>
-              </div>
-              <div>
-                <p>Transmission</p>
-                <label htmlFor="">
-                  <input type="radio" value={'automatic'} name="Transmission" />
-                  Automatic
-                </label>
+          <h2 className={css.filtersTitle}>Filters</h2>
 
-                <label htmlFor="">
-                  <input type="radio" value={'manual'} name="Transmission" />
-                  Manual
-                </label>
+          <div className={css.groups}>
+            <div className={css.group}>
+              <p className={css.groupTitle}>Camper form</p>
+              <div className={css.options}>
+                {data?.forms.map((formsType) => (
+                  <label className={css.radioLabel} key={formsType}>
+                    <input
+                      type="radio"
+                      className={css.radioInput}
+                      name="form"
+                      value={formsType}
+                      checked={filterCampers.form === formsType}
+                      onChange={() =>
+                        setFilterCampers({ ...filterCampers, form: formsType })
+                      }
+                    />
+                    {formatLabel(formsType)}
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div className={css.group}>
+              <p className={css.groupTitle}>Engine</p>
+              <div className={css.options}>
+                {data?.engines.map((engineType) => (
+                  <label className={css.radioLabel} key={engineType}>
+                    <input
+                      type="radio"
+                      className={css.radioInput}
+                      name="engine"
+                      value={engineType}
+                      checked={filterCampers.engine === engineType}
+                      onChange={() =>
+                        setFilterCampers({
+                          ...filterCampers,
+                          engine: engineType,
+                        })
+                      }
+                    />
+                    {formatLabel(engineType)}
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div className={css.group}>
+              <p className={css.groupTitle}>Transmission</p>
+              <div className={css.options}>
+                {data?.transmissions.map((transmissionType) => (
+                  <label className={css.radioLabel} key={transmissionType}>
+                    <input
+                      type="radio"
+                      className={css.radioInput}
+                      name="transmission"
+                      value={transmissionType}
+                      checked={filterCampers.transmission === transmissionType}
+                      onChange={() =>
+                        setFilterCampers({
+                          ...filterCampers,
+                          transmission: transmissionType,
+                        })
+                      }
+                    />
+                    {formatLabel(transmissionType)}
+                  </label>
+                ))}
               </div>
             </div>
           </div>
+
+          <button type="button" className={css.searchButton}>
+            Search
+          </button>
+          <button
+            type="button"
+            className={css.clearButton}
+            onClick={() =>
+              setFilterCampers({
+                location: '',
+                form: null,
+                engine: null,
+                transmission: null,
+              })
+            }
+          >
+            Clear filters
+          </button>
         </form>
       </div>
     </section>

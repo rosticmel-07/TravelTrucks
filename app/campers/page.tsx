@@ -1,9 +1,17 @@
-import CamperCard from '@/components/CamperCard/CamperCard';
-import { fetchCampers } from '@/lib/api';
-import { Camper, CampersResponse } from '@/type/Trucks';
 import CamperList from '@/components/CamperList/CamperList';
+import Filters from '@/components/Filters/Filters';
+import { fetchCampers } from '@/lib/api';
+import css from './page.module.css';
 
 export default async function CampersPage() {
   const { campers } = await fetchCampers();
-  return <CamperList campers={campers} />;
+
+  return (
+    <section className={css.page}>
+      <div className={css.container}>
+        <Filters />
+        <CamperList campers={campers} />
+      </div>
+    </section>
+  );
 }

@@ -1,0 +1,161 @@
+.wrapper {
+  width: fit-content;
+}
+
+.card {
+  background: var(--inputs);
+  border-radius: 20px;
+  padding: 24px;
+  width: 344px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.locationField {
+  margin-bottom: 44px;
+}
+
+.locationLabel {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--gray);
+  margin-bottom: 8px;
+}
+
+.locationInput {
+  width: 100%;
+  height: 56px;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  background: var(--white);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--main);
+  outline: none;
+}
+
+.locationInput::placeholder {
+  color: var(--gray);
+}
+
+.filtersTitle {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  color: var(--main);
+  margin-bottom: 24px;
+}
+
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 44px;
+}
+
+.group {
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.groupTitle {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--gray);
+  text-transform: capitalize;
+  margin-bottom: 16px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  text-transform: capitalize;
+  color: var(--main);
+  cursor: pointer;
+}
+
+.radioInput {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gray);
+  position: relative;
+  cursor: pointer;
+  transition: border-color var(--main-transition);
+}
+
+.radioInput:checked {
+  border-color: var(--main);
+}
+
+.radioInput:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--main);
+  transform: translate(-50%, -50%);
+}
+
+.searchButton {
+  width: 100%;
+  height: 56px;
+  border: none;
+  border-radius: 200px;
+  background: var(--grey-green);
+  color: var(--white);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  transition: background-color var(--main-transition);
+}
+
+.searchButton:hover,
+.searchButton:focus {
+  background: var(--green-hover);
+}
+
+.clearButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 56px;
+  border: none;
+  border-radius: 200px;
+  background: var(--white);
+  color: var(--main);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  transition: background-color var(--main-transition);
+}
+
+.clearButton:hover,
+.clearButton:focus {
+  background: var(--badges);
+}

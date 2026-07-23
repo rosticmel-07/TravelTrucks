@@ -1,5 +1,21 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
+import QueryProvider from '@/components/QueryProvider/QueryProvider';
 import './globals.css';
+
+export const metadata: Metadata = {
+  title: 'TravelTrucks — Camper Rental',
+  description:
+    'Rent the perfect camper for your next adventure. Browse our catalog of campers, filter by location, engine, and transmission, and book your trip with TravelTrucks.',
+  keywords: ['camper rental', 'RV rental', 'travel', 'road trip', 'motorhome'],
+  openGraph: {
+    title: 'TravelTrucks — Camper Rental',
+    description:
+      'Rent the perfect camper for your next adventure with TravelTrucks.',
+    type: 'website',
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -8,8 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        <>{children}</>
+        <QueryProvider>
+          <Header />
+          {children}
+        </QueryProvider>
       </body>
     </html>
   );

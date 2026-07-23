@@ -1,0 +1,12 @@
+.page {
+  padding: 40px 0;
+}
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  max-width: 1440px;
+  padding: 0 64px;
+  margin: 0 auto;
+}
