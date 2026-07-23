@@ -82,3 +82,9 @@ export type CamperDetails = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type FilterOptions = {
+  forms: CamperForm[];
+  transmissions: Transmission[];
+  engines: Engine[];
+};

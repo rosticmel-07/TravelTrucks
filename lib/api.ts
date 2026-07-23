@@ -1,4 +1,4 @@
-import { Camper, CamperDetails, CampersResponse } from '@/type/Trucks';
+import { CamperDetails, CampersResponse, FilterOptions } from '@/type/Trucks';
 import axios from 'axios';
 
 export const api = axios.create({
@@ -12,5 +12,10 @@ export const fetchCampers = async () => {
 
 export const getCamperById = async (truckId: string) => {
   const response = await api.get<CamperDetails>(`/campers/${truckId}`);
+  return response.data;
+};
+
+export const fetchFilter = async () => {
+  const response = await api.get<FilterOptions>('/campers/filters');
   return response.data;
 };
