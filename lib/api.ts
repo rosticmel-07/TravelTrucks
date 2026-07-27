@@ -1,21 +1,40 @@
-import { CamperDetails, CampersResponse, FilterOptions } from '@/type/Trucks';
+import {
+  Camper,
+  CamperDetails,
+  CampersResponse,
+  FilterOptions,
+  Review,
+} from '@/type/Trucks';
 import axios from 'axios';
 
 export const api = axios.create({
   baseURL: 'https://campers-api.goit.study',
 });
 
-export const fetchCampers = async () => {
-  const response = await api.get<CampersResponse>('/campers');
+export type FetchCampersParams = {
+  page: number;
+  perPage: number;
+  location?: string;
+  form?: string;
+  transmission?: string;
+  engine?: string;
+};
+
+export const fetchCampers = async (params: FetchCampersParams) => {
+  const response = await api.get<CampersResponse>('/campers', { params });
   return response.data;
 };
 
-export const getCamperById = async (truckId: string) => {
-  const response = await api.get<CamperDetails>(`/campers/${truckId}`);
+export const getCamperById = async (camperId: string) => {
+  const response = await api.get<CamperDetails>(`/campers/${camperId}`);
   return response.data;
 };
 
 export const fetchFilter = async () => {
   const response = await api.get<FilterOptions>('/campers/filters');
   return response.data;
+};
+
+export const getCamperReviews = async (camperId: string) => {
+  const response = await api.get<Review>(`/campers/${camperId}/reviews`);
 };

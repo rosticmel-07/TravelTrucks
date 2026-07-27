@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import formatLabel from '../_utils/formatLabel';
 import css from './Filters.module.css';
+import { CiMap } from 'react-icons/ci';
 
 type CampersFilters = {
   location: string;
@@ -13,7 +14,11 @@ type CampersFilters = {
   engine: string | null;
 };
 
-export default function Filters() {
+type FiltersProps = {
+  onSearch: (filters: CampersFilters) => void;
+};
+
+export default function Filters({ onSearch }: FiltersProps) {
   const [filterCampers, setFilterCampers] = useState<CampersFilters>({
     location: '',
     form: null,
@@ -26,24 +31,39 @@ export default function Filters() {
     queryFn: fetchFilter,
   });
 
+  const handleClear = () => {
+    const cleared: CampersFilters = {
+      location: '',
+      form: null,
+      engine: null,
+      transmission: null,
+    };
+    setFilterCampers(cleared);
+    onSearch(cleared);
+  };
+
   return (
     <section className={css.wrapper}>
       <div className={css.card}>
         <form className={css.form}>
           <div className={css.locationField}>
             <p className={css.locationLabel}>Location</p>
-            <input
-              type="text"
-              className={css.locationInput}
-              value={filterCampers.location}
-              onChange={(event) =>
-                setFilterCampers({
-                  ...filterCampers,
-                  location: event.target.value,
-                })
-              }
-              name="location"
-            />
+            <div className={css.locationWrapper}>
+              <CiMap size={20} className={css.mapIcon} />
+              <input
+                type="text"
+                className={css.locationInput}
+                value={filterCampers.location}
+                onChange={(event) =>
+                  setFilterCampers({
+                    ...filterCampers,
+                    location: event.target.value,
+                  })
+                }
+                name="location"
+                placeholder="City"
+              />
+            </div>
           </div>
 
           <h2 className={css.filtersTitle}>Filters</h2>
@@ -119,20 +139,17 @@ export default function Filters() {
             </div>
           </div>
 
-          <button type="button" className={css.searchButton}>
+          <button
+            type="button"
+            className={css.searchButton}
+            onClick={() => onSearch(filterCampers)}
+          >
             Search
           </button>
           <button
             type="button"
             className={css.clearButton}
-            onClick={() =>
-              setFilterCampers({
-                location: '',
-                form: null,
-                engine: null,
-                transmission: null,
-              })
-            }
+            onClick={handleClear}
           >
             Clear filters
           </button>

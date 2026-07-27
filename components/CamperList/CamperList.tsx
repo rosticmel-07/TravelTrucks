@@ -9,13 +9,11 @@ type CamperListProps = {
 export default function CamperList({ campers }: CamperListProps) {
   return (
     <section className={css.wrapper}>
-      <div className="container">
-        <ul className={css.list}>
-          {campers.map((camper) => (
-            <CamperCard key={camper.id} camper={camper} />
-          ))}
-        </ul>
-      </div>
+      <ul className={css.list}>
+        {campers.map((camper) => (
+          <CamperCard key={camper.id} camper={camper} />
+        ))}
+      </ul>
     </section>
   );
 }

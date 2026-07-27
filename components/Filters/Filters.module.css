@@ -6,7 +6,7 @@
   background: var(--inputs);
   border-radius: 20px;
   padding: 24px;
-  width: 344px;
+  width: 360px;
 }
 
 .form {
@@ -15,29 +15,48 @@
 }
 
 .locationField {
-  margin-bottom: 44px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+.locationWrapper {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: var(--white);
+  width: 312px;
+  height: 56px;
 }
 
-.locationLabel {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--gray);
-  margin-bottom: 8px;
+.mapIcon {
+  width: 24px;
+  height: 24px;
+  color: var(--main);
+  flex-shrink: 0;
 }
 
 .locationInput {
-  width: 100%;
-  height: 56px;
-  padding: 16px;
+  flex: 1;
+  height: 100%;
   border: none;
-  border-radius: 12px;
-  background: var(--white);
+  background: transparent;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
   color: var(--main);
   outline: none;
+  border-radius: 12px;
+  padding: 12px;
+}
+.locationLabel {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--gray);
+  margin-bottom: 8px;
 }
 
 .locationInput::placeholder {
@@ -46,8 +65,8 @@
 
 .filtersTitle {
   font-weight: 600;
-  font-size: 24px;
-  line-height: 1.33;
+  font-size: 20px;
+  line-height: 1.2;
   color: var(--main);
   margin-bottom: 24px;
 }
@@ -59,31 +78,25 @@
   margin-bottom: 44px;
 }
 
-.group {
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--gray-light);
-}
-
 .groupTitle {
-  font-weight: 500;
+  font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
   color: var(--gray);
-  text-transform: capitalize;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .options {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .radioLabel {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
   text-transform: capitalize;
@@ -93,30 +106,43 @@
 
 .radioInput {
   appearance: none;
-  width: 20px;
-  height: 20px;
-  min-width: 20px;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
   border-radius: 50%;
-  border: 1.5px solid var(--gray);
+  border: 1.5px solid var(--text);
   position: relative;
   cursor: pointer;
   transition: border-color var(--main-transition);
 }
 
-.radioInput:checked {
-  border-color: var(--main);
+.radioInput:hover {
+  border-color: var(--text);
 }
 
-.radioInput:checked::after {
+.radioInput::after {
+  border-radius: 100%;
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--main);
-  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  background: var(--text);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition:
+    transform var(--main-transition),
+    opacity var(--main-transition);
+}
+
+.radioInput:checked {
+  border-color: var(--text);
+}
+
+.radioInput:checked::after {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
 }
 
 .searchButton {
@@ -131,6 +157,7 @@
   line-height: 1.5;
   margin-bottom: 16px;
   transition: background-color var(--main-transition);
+  padding: 16px 60px;
 }
 
 .searchButton:hover,
@@ -139,20 +166,16 @@
 }
 
 .clearButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+  border: 1px solid var(--gray-light);
+  background-color: var(--white);
   width: 100%;
-  height: 56px;
-  border: none;
+  transition: border-color var(--main-transition);
   border-radius: 200px;
-  background: var(--white);
-  color: var(--main);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.5;
-  transition: background-color var(--main-transition);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 0;
 }
 
 .clearButton:hover,

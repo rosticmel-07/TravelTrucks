@@ -16,7 +16,7 @@ type CamperCardProps = {
 export default function CamperCard({ camper }: CamperCardProps) {
   return (
     <li className={css.card}>
-      <article className={css.top}>
+      <div className={css.top}>
         <Image
           src={camper.coverImage}
           alt={camper.name}
@@ -43,7 +43,7 @@ export default function CamperCard({ camper }: CamperCardProps) {
           </div>
 
           <p className={css.description}>
-            {camper.description.slice(0, 90)}...
+            {camper.description.slice(0, 75)}...
           </p>
 
           <ul className={css.badges}>
@@ -61,11 +61,11 @@ export default function CamperCard({ camper }: CamperCardProps) {
             </li>
           </ul>
 
-          <Link href={`/campers/${camper.id}`} className={css.button}>
+          <Link href={`/catalog/${camper.id}`} className={css.button}>
             Show more
           </Link>
         </div>
-      </article>
+      </div>
     </li>
   );
 }
