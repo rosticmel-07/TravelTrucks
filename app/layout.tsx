@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import QueryProvider from '@/components/QueryProvider/QueryProvider';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -28,6 +30,7 @@ export default function RootLayout({
           <Header />
           {children}
         </QueryProvider>
+        <ToastContainer position="top-right" autoClose={4000} />
       </body>
     </html>
   );

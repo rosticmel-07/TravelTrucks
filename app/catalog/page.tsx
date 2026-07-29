@@ -3,27 +3,26 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import CamperList from '@/components/CamperList/CamperList';
-import Filters from '@/components/Filters/Filters';
+import Filters, { CampersFilters } from '@/components/Filters/Filters';
 import Loader from '@/components/Loader/Loader';
+import CamperNotFound from '@/components/CamperNotFound/CamperNotFound';
 import { fetchCampers } from '@/lib/api';
 import css from './page.module.css';
 
 const PER_PAGE = 4;
 
-type ActiveFilters = {
-  location: string;
-  form: string | null;
-  transmission: string | null;
-  engine: string | null;
+const EMPTY_FILTERS: CampersFilters = {
+  location: '',
+  form: null,
+  transmission: null,
+  engine: null,
 };
 
 export default function CampersPage() {
-  const [activeFilters, setActiveFilters] = useState<ActiveFilters>({
-    location: '',
-    form: null,
-    transmission: null,
-    engine: null,
-  });
+  const [draftFilters, setDraftFilters] =
+    useState<CampersFilters>(EMPTY_FILTERS);
+  const [activeFilters, setActiveFilters] =
+    useState<CampersFilters>(EMPTY_FILTERS);
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     useInfiniteQuery({
@@ -44,18 +43,32 @@ export default function CampersPage() {
 
   const campers = data?.pages.flatMap((page) => page.campers) ?? [];
 
+  const handleClear = () => {
+    setDraftFilters(EMPTY_FILTERS);
+    setActiveFilters(EMPTY_FILTERS);
+  };
+
   return (
     <section className={css.page}>
       <div className={css.container}>
-        <Filters onSearch={setActiveFilters} />
+        <div className={css.filtersSticky}>
+          <Filters
+            value={draftFilters}
+            onChange={setDraftFilters}
+            onSearch={setActiveFilters}
+            onClear={handleClear}
+          />
+        </div>
 
         <div className={css.results}>
           {isLoading ? (
             <div className={css.overlay}>
               <Loader />
             </div>
+          ) : campers.length === 0 ? (
+            <CamperNotFound onClearFilters={handleClear} />
           ) : (
-            <div className={css.styleButton}>
+            <>
               <CamperList campers={campers} />
               {hasNextPage && (
                 <button
@@ -67,7 +80,7 @@ export default function CampersPage() {
                   {isFetchingNextPage ? 'Loading...' : 'Load more'}
                 </button>
               )}
-            </div>
+            </>
           )}
         </div>
       </div>

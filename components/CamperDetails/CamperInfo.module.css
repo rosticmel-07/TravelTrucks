@@ -1,0 +1,174 @@
+.wrapper {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mainImage {
+  border-radius: 17px;
+  width: 638px;
+  height: 505px;
+  object-fit: cover;
+}
+.baseInfo {
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.thumbList {
+  display: flex;
+  gap: 32px;
+}
+
+.thumbImage {
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 24px;
+
+  line-height: 1.33333;
+  color: var(--main);
+  margin-bottom: 8px;
+}
+
+.meta {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.rating,
+.location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 400;
+  font-size: 16px;
+
+  line-height: 1.5;
+  color: var(--main);
+}
+.rating svg {
+  color: #ffc531;
+}
+
+.price {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  color: var(--main);
+  margin-bottom: 24px;
+}
+
+.description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.details {
+  background: var(--inputs);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.detailsTitle {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.3;
+  color: var(--main);
+  margin-bottom: 16px;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  padding: 12px 18px;
+
+  height: 48px;
+
+  padding: 8px 16px;
+  background: var(--badges);
+  mix-blend-mode: multiply;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--main);
+  text-transform: capitalize;
+}
+
+.specsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--gray-light);
+}
+
+.specsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.specsLabel {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--main);
+}
+
+.specsValue {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--main);
+}
+.mainSwiper {
+  width: 638px;
+}
+
+.thumbSwiper {
+  width: 638px;
+  margin-top: 16px;
+}
+.thumbSwiper {
+  margin-top: 16px;
+}
+
+.thumbSwiper :global(.swiper-slide) {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity var(--main-transition);
+}
+
+.thumbSwiper :global(.swiper-slide-thumb-active) {
+  opacity: 1;
+}

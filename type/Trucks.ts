@@ -75,6 +75,7 @@ export type CamperDetails = {
   height: string;
   tank: string;
   consumption: string;
+  coverImage: string;
   transmission: Transmission;
   engine: Engine;
   amenities: Amenity[];

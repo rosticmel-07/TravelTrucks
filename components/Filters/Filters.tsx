@@ -2,12 +2,11 @@
 
 import { fetchFilter } from '@/lib/api';
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
 import formatLabel from '../_utils/formatLabel';
 import css from './Filters.module.css';
 import { CiMap } from 'react-icons/ci';
 
-type CampersFilters = {
+export type CampersFilters = {
   location: string;
   form: string | null;
   transmission: string | null;
@@ -15,32 +14,22 @@ type CampersFilters = {
 };
 
 type FiltersProps = {
+  value: CampersFilters;
+  onChange: (filters: CampersFilters) => void;
   onSearch: (filters: CampersFilters) => void;
+  onClear: () => void;
 };
 
-export default function Filters({ onSearch }: FiltersProps) {
-  const [filterCampers, setFilterCampers] = useState<CampersFilters>({
-    location: '',
-    form: null,
-    transmission: null,
-    engine: null,
-  });
-
+export default function Filters({
+  value,
+  onChange,
+  onSearch,
+  onClear,
+}: FiltersProps) {
   const { data } = useQuery({
     queryKey: ['filterCampers'],
     queryFn: fetchFilter,
   });
-
-  const handleClear = () => {
-    const cleared: CampersFilters = {
-      location: '',
-      form: null,
-      engine: null,
-      transmission: null,
-    };
-    setFilterCampers(cleared);
-    onSearch(cleared);
-  };
 
   return (
     <section className={css.wrapper}>
@@ -53,12 +42,9 @@ export default function Filters({ onSearch }: FiltersProps) {
               <input
                 type="text"
                 className={css.locationInput}
-                value={filterCampers.location}
+                value={value.location}
                 onChange={(event) =>
-                  setFilterCampers({
-                    ...filterCampers,
-                    location: event.target.value,
-                  })
+                  onChange({ ...value, location: event.target.value })
                 }
                 name="location"
                 placeholder="City"
@@ -79,10 +65,8 @@ export default function Filters({ onSearch }: FiltersProps) {
                       className={css.radioInput}
                       name="form"
                       value={formsType}
-                      checked={filterCampers.form === formsType}
-                      onChange={() =>
-                        setFilterCampers({ ...filterCampers, form: formsType })
-                      }
+                      checked={value.form === formsType}
+                      onChange={() => onChange({ ...value, form: formsType })}
                     />
                     {formatLabel(formsType)}
                   </label>
@@ -100,12 +84,9 @@ export default function Filters({ onSearch }: FiltersProps) {
                       className={css.radioInput}
                       name="engine"
                       value={engineType}
-                      checked={filterCampers.engine === engineType}
+                      checked={value.engine === engineType}
                       onChange={() =>
-                        setFilterCampers({
-                          ...filterCampers,
-                          engine: engineType,
-                        })
+                        onChange({ ...value, engine: engineType })
                       }
                     />
                     {formatLabel(engineType)}
@@ -124,12 +105,9 @@ export default function Filters({ onSearch }: FiltersProps) {
                       className={css.radioInput}
                       name="transmission"
                       value={transmissionType}
-                      checked={filterCampers.transmission === transmissionType}
+                      checked={value.transmission === transmissionType}
                       onChange={() =>
-                        setFilterCampers({
-                          ...filterCampers,
-                          transmission: transmissionType,
-                        })
+                        onChange({ ...value, transmission: transmissionType })
                       }
                     />
                     {formatLabel(transmissionType)}
@@ -142,15 +120,11 @@ export default function Filters({ onSearch }: FiltersProps) {
           <button
             type="button"
             className={css.searchButton}
-            onClick={() => onSearch(filterCampers)}
+            onClick={() => onSearch(value)}
           >
             Search
           </button>
-          <button
-            type="button"
-            className={css.clearButton}
-            onClick={handleClear}
-          >
+          <button type="button" className={css.clearButton} onClick={onClear}>
             Clear filters
           </button>
         </form>

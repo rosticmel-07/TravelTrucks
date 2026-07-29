@@ -1,0 +1,85 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0px 200px 161px 200px;
+  background: var(--inputs);
+  border-radius: 16px;
+}
+
+.iconCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--grey-green);
+  margin-bottom: 24px;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  color: var(--white);
+}
+
+.title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  color: var(--main);
+  margin-bottom: 8px;
+}
+
+.description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: 32px;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+}
+
+.clearButton {
+  border: 1px solid var(--gray-light);
+  background-color: var(--white);
+  width: 100%;
+  transition: border-color var(--main-transition);
+  border-radius: 200px;
+  padding: 16px 32px;
+  width: 192px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clearButton:hover {
+  background: var(--badges);
+}
+.viewAllButton {
+  border: none;
+
+  border-radius: 200px;
+
+  width: 192px;
+  height: 56px;
+  background: var(--grey-green);
+  color: var(--white);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+
+  transition: background-color var(--main-transition);
+}
+
+.viewAllButton:hover {
+  background: var(--green-hover);
+}

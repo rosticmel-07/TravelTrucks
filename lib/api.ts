@@ -36,5 +36,26 @@ export const fetchFilter = async () => {
 };
 
 export const getCamperReviews = async (camperId: string) => {
-  const response = await api.get<Review>(`/campers/${camperId}/reviews`);
+  const response = await api.get<Review[]>(`/campers/${camperId}/reviews`);
+  return response.data;
+};
+
+export type BookingRequest = {
+  name: string;
+  email: string;
+};
+
+export type BookingResponse = {
+  message: string;
+};
+
+export const createBookingRequest = async (
+  camperId: string,
+  data: BookingRequest
+) => {
+  const response = await api.post<BookingResponse>(
+    `/campers/${camperId}/booking-requests`,
+    data
+  );
+  return response.data;
 };
